@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.views.generic import TemplateView
+
+from cocktails.recipes.views import DrinkDetailView, DrinkListView, IngredientCreateView, IngredientListView
+
 
 urlpatterns = [
+    url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
+    url(r'^drinks/$', DrinkListView.as_view(), name='drink_list'),
+    url(r'^drinks/(?P<pk>[0-9]+)/$', DrinkDetailView.as_view(), name='drink_detail'),
+    url(r'^ingredients/$', IngredientListView.as_view(), name='ingredient_list'),
+    url(r'^ingredients/add/$', IngredientCreateView.as_view(), name='ingredient_add'),
     url(r'^admin/', include(admin.site.urls)),
 ]

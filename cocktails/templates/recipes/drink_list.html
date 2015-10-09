@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <p>
+        <a href="{% url 'index' %}">&laquo; Back home</a>
+    </p>
+    {% for drink in object_list %}
+        {% if forloop.first %}
+        <ul>
+        {% endif %}
+            <li><a href="{% url 'drink_detail' drink.id %}">{{ drink.name }}</a></li>
+        {% if forloop.last %}
+        </ul>
+        {% endif %}
+    {% empty %}
+        No drinks yet in the database.
+    {% endfor %}
+{% endblock %}

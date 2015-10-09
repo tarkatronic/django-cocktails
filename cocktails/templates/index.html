@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ul>
+        <li><a href="{% url 'drink_list' %}">Drink list</a></li>
+        <li><a href="{% url 'ingredient_list' %}">Ingredient list</a></li>
+    </ul>
+{% endblock %}

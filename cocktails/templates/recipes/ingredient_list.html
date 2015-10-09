@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <p>
+        <a href="{% url 'index' %}">&laquo; Back home</a> |
+        <a href="{% url 'ingredient_add' %}">Add an ingredient &raquo;</a>
+    </p>
+    {% for ingredient in object_list %}
+        {% if forloop.first %}
+        <ul>
+        {% endif %}
+            <li>{{ ingredient.name }}{% if ingredient.measurement %} -- {{ ingredient.get_measurement_display }}{% endif %}</li>
+        {% if forloop.last %}
+        </ul>
+        {% endif %}
+    {% empty %}
+        No ingredients yet in the database.
+    {% endfor %}
+{% endblock %}

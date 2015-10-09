@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <p>
+        <a href="{% url 'index' %}">&laquo; Back home</a> |
+        <a href="{% url 'ingredient_list' %}">&laquo; Ingredient list</a>
+    </p>
+    <form method="post">
+        {% csrf_token %}
+        <table>
+        {{ form.as_table }}
+        </table>
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}

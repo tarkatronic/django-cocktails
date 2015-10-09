@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <p>
+        <a href="{% url 'index' %}">&laquo; Back home</a> |
+        <a href="{% url 'drink_list' %}">&laquo; Drink list</a>
+    </p>
+    <h1>{{ drink.name }}</h1>
+    <dl>
+        <dt>Ingredients</dt>
+        <dd>
+            <ul>
+                {% for component in components %}
+                <li>{{ component.amount }}{% if component.ingredient.measurement %} {{ component.ingredient.measurement }}{% endif %} {{ component.ingredient.name }}</li>
+                {% endfor %}
+            </ul>
+        </dd>
+        <td>Steps</td>
+        <dd>
+            <ol>
+                {% for step in drink.steps.all %}
+                <li>{{ step.text }}</li>
+                {% endfor %}
+            </ol>
+        </dd>
+    </dl>
+{% endblock %}
